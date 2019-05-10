@@ -1,0 +1,36 @@
+{
+    "FbiJson": {
+        "Ticket": {
+            "Key": "9b42a1ee-6200-470a-8e37-690473e27da4"
+        },
+        "FbiMsgsRq": {
+          "ExecuteQueryRq":{
+            	"Query": "SELECT part.num AS partNumber, part.description AS partDescription FROM part where part.num = 'TM2-1020'"
+           }
+        }
+    }
+}
+
+To use this;
+Open The Developer Hook App,
+Click Settings-> Change connection,
+Enter admin user details and server name "qmarkmfg.myfishbowl.com",
+Click "Ok", 
+Click "Connect" at the bottom of the screen,
+Click "Send Request",
+You should get success message.
+Returned key will be key needed for future Requests.
+Now Click "Tabs at top of window,
+Click" Add Request Tab",
+Choose "Execute Query". This will open new tab where you can enter the above sample. Make sure the key matches current key.
+
+
+SELECT product.num, customvarcharlong.info FROM so
+JOIN customvarcharlong ON so.id = customvarcharlong.recordid
+JOIN customfield ON customvarcharlong.customfieldid = customfield.id
+WHERE customfield.name = ‘Custom Field Name’
+
+OR
+
+SELECT product.num, customvarcharlong.info FROM so
+JOIN customvarcharlong ON so.id = customvarcharlong.recordid AND customfield.id =
