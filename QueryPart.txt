@@ -34,3 +34,5 @@ OR
 
 SELECT product.num, customvarcharlong.info FROM so
 JOIN customvarcharlong ON so.id = customvarcharlong.recordid AND customfield.id =
+
+{"FbiJson": {"Ticket": {"Key": "9b42a1ee-6200-470a-8e37-690473e27da4"},"FbiMsgsRq": {"ExecuteQueryRq":{"Query": "SELECT part.num AS partNumber, part.description AS partDescription FROM part where part.num = 'TM2-1020'"}}}}

@@ -132,6 +132,7 @@ namespace FishConWn
             richTextBox1.Text += "<<<<<<<<<<<<<Requst>>>>>>>>>>>>>\n\r";
             richTextBox1.Text += listCustomerName(FishConVars.Key) + "\n\r";
             String customerNameList = FishConVars.fbCon.sendCommand(listCustomerName(FishConVars.Key));
+            
             richTextBox1.Text += "*************Response**************\n\r";
             richTextBox1.Text += customerNameList;
 
