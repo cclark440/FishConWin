@@ -46,17 +46,18 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 65);
+            this.textBox1.Location = new System.Drawing.Point(0, 65);
+            this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(717, 20);
+            this.textBox1.Size = new System.Drawing.Size(848, 126);
             this.textBox1.TabIndex = 0;
             // 
             // richTextBox1
             // 
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 106);
+            this.richTextBox1.Location = new System.Drawing.Point(0, 211);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(742, 344);
+            this.richTextBox1.Size = new System.Drawing.Size(848, 344);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
             this.richTextBox1.WordWrap = false;
@@ -90,7 +91,7 @@
             this.fIleToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(742, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(848, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -144,7 +145,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(742, 450);
+            this.ClientSize = new System.Drawing.Size(848, 555);
             this.Controls.Add(this.cbFormat);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);

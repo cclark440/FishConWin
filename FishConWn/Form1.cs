@@ -28,7 +28,8 @@ namespace FishConWn
             String loginCommand = createLoginXml("admin", "Atg-3058sn");
             richTextBox1.Text += "Login sent\n\r";
             //
-            FishConVars.Key = "cbdaca4a-700d-4d01-9c84-82ed8eec66ad";// pullKey(FishConVars.fbCon.sendCommand(loginCommand));
+            FishConVars.Key = pullKey(FishConVars.fbCon.sendCommand(loginCommand));
+            //FishConVars.Key = "cbdaca4a-700d-4d01-9c84-82ed8eec66ad";
             if (FishConVars.Key == "null")
             {
                 richTextBox1.Text += "Please accept the connection attempt on the fisbowl server and press return\n\r";
