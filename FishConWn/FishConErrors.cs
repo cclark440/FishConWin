@@ -8,7 +8,7 @@ namespace FishConWn
 {
     class FishConErrors {
 
-        private String [,] ErrorList;
+        public public static String [,] ErrorList;
 
         FishConErrors()
         {
@@ -29,9 +29,11 @@ namespace FishConWn
 
             return ("Unknown response");
         }
-        
-        /*
-        900	Success! This API request is deprecated and expected to be removed soon.
+    }
+
+}
+/*
+900	Success! This API request is deprecated and expected to be removed soon.
 1000	Success!
 1001	Unknown message received.
 1002	Connection to Fishbowl server was lost.
@@ -242,6 +244,4 @@ namespace FishConWn
 7002	The pricing rule name is not unique
 8000	Unknown FOB _________.
 */
-    }
 
-}
