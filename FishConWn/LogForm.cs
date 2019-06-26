@@ -26,5 +26,10 @@ namespace FishConWn
         {
             RE.Text = FishConVars.sLog;
         }
+
+        public void UpdateLog()
+        {
+            RE.Text = FishConVars.sLog;
+        }
     }
 }
