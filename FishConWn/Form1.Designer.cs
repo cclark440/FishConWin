@@ -34,6 +34,7 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fIleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.customRequest = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,6 +48,7 @@
             this.lblSalesOrder = new System.Windows.Forms.Label();
             this.btnSalesOrder = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnOdbc = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.PD = new System.Windows.Forms.PrintDialog();
             this.PD2 = new System.Windows.Forms.PrintDialog();
@@ -55,7 +57,6 @@
             this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MultiLabel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblCustomer = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
@@ -100,24 +101,31 @@
             this.fIleToolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
             this.fIleToolStripMenuItem1.Text = "&File";
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(161, 22);
+            this.toolStripMenuItem2.Text = "Clear &Grid";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
             // customRequest
             // 
             this.customRequest.Name = "customRequest";
-            this.customRequest.Size = new System.Drawing.Size(180, 22);
+            this.customRequest.Size = new System.Drawing.Size(161, 22);
             this.customRequest.Text = "Custom &Request";
             this.customRequest.Click += new System.EventHandler(this.customRequest_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(161, 22);
             this.toolStripMenuItem1.Text = "Show &Log";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -148,7 +156,7 @@
             // 
             // sslResultCode
             // 
-            this.sslResultCode.BackColor = System.Drawing.Color.Red;
+            this.sslResultCode.BackColor = System.Drawing.SystemColors.Control;
             this.sslResultCode.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.sslResultCode.Name = "sslResultCode";
             this.sslResultCode.Size = new System.Drawing.Size(35, 19);
@@ -194,16 +202,18 @@
             // 
             // btnSalesOrder
             // 
-            this.btnSalesOrder.Location = new System.Drawing.Point(187, 4);
+            this.btnSalesOrder.Location = new System.Drawing.Point(523, 6);
             this.btnSalesOrder.Name = "btnSalesOrder";
             this.btnSalesOrder.Size = new System.Drawing.Size(75, 23);
             this.btnSalesOrder.TabIndex = 12;
-            this.btnSalesOrder.Text = "Get SO";
+            this.btnSalesOrder.Text = "Get SO API";
             this.btnSalesOrder.UseVisualStyleBackColor = true;
+            this.btnSalesOrder.Visible = false;
             this.btnSalesOrder.Click += new System.EventHandler(this.btnSalesOrder_Click);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnOdbc);
             this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.btnJsonLogin);
             this.panel1.Controls.Add(this.btnSalesOrder);
@@ -214,6 +224,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(634, 32);
             this.panel1.TabIndex = 13;
+            // 
+            // btnOdbc
+            // 
+            this.btnOdbc.Location = new System.Drawing.Point(187, 5);
+            this.btnOdbc.Name = "btnOdbc";
+            this.btnOdbc.Size = new System.Drawing.Size(75, 23);
+            this.btnOdbc.TabIndex = 14;
+            this.btnOdbc.Text = "Get SO";
+            this.btnOdbc.UseVisualStyleBackColor = true;
+            this.btnOdbc.Click += new System.EventHandler(this.btnOdbc_Click);
             // 
             // btnPrint
             // 
@@ -275,13 +295,6 @@
             // 
             this.MultiLabel.HeaderText = "MultiLabel";
             this.MultiLabel.Name = "MultiLabel";
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItem2.Text = "Clear &Grid";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // panel2
             // 
@@ -370,6 +383,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lblCustomer;
+        private System.Windows.Forms.Button btnOdbc;
     }
 }
 

@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 using System.Drawing.Printing;
 using Microsoft.VisualBasic;
+using System.Data.Odbc;
 
 namespace FishConWn
 {
@@ -24,7 +25,7 @@ namespace FishConWn
         {
             InitializeComponent();
             FishConVars.sLog = "";
-            this.Text += " : V1.0 Beta";
+            this.Text += " : V1.2-ODBC";
             FishConVars.SmallVertOffset = 0;
         }
 
@@ -35,7 +36,7 @@ namespace FishConWn
         
         private void LogintoFishBowl()
         {
-            String loginCommand = CreateLoginJson("admin", "Atg-3058sn");
+            String loginCommand = CreateLoginJson("labels", "Atg-3058sn");
             FishConVars.sLog += "Json Login sent\n\r" + loginCommand + "\n\r";
             String sResponse = FishConVars.fbCon.sendCommand(loginCommand);
             pullStatus(sResponse);
@@ -51,6 +52,12 @@ namespace FishConWn
                 FishConVars.sLog += "Connection Successfull with key:" + FishConVars.Key + "\n\r" + sResponse;
                 sslResultCode.BackColor = Color.LimeGreen;
             }
+        }
+
+        private void LogoutFishbowl()
+        {
+            String logOutRequest = "{\"FbiJson\": {\"Ticket\": {\"Key\":\"" + FishConVars.Key + "\"},\"FbiMsgsRq\": {\"LogoutRq\": \"\"}}}";            
+            String sResponse = FishConVars.fbCon.sendCommand(logOutRequest);
         }
 
 //----------------------Json login---------------------------******************************************************
@@ -98,9 +105,12 @@ namespace FishConWn
         //*****************************************************************************************************************
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            /*
             String logOutRequest = "{\"FbiJson\": {\"Ticket\": {\"Key\":\"" + FishConVars.Key + "\"},\"FbiMsgsRq\": {\"LogoutRq\": \"\"}}}";
                                    //"{\"FbiJson\": {\"Ticket\": {\"Key\":\"" + FishConVars.Key + "\"},\"FbiMsgsRq\": {\"LogoutRq\": \"\"}}}";
             String sResponse = FishConVars.fbCon.sendCommand(logOutRequest);
+            */
+            LogoutFishbowl();
             e.Cancel = false;
 
         }
@@ -148,7 +158,7 @@ namespace FishConWn
 
         private void Form1_Shown(object sender, EventArgs e)
         {
-            LogintoFishBowl();
+            //LogintoFishBowl();
 
             if (!File.Exists("Q:\\Label Data\\QMarkQB.qql"))
             {
@@ -203,6 +213,8 @@ namespace FishConWn
 
         private void btnSalesOrder_Click(object sender, EventArgs e)
         {
+            //LogintoFishBowl();
+
             Cursor.Current = Cursors.WaitCursor;
             dataGridView1.Rows.Clear();
             String returnString = "";
@@ -228,6 +240,8 @@ namespace FishConWn
             {
                 Application.OpenForms.OfType<LogForm>().First().UpdateLog();
             }
+
+            //LogoutFishbowl();
             Cursor.Current = Cursors.Default;
             //Get Response code
         }
@@ -434,8 +448,58 @@ namespace FishConWn
         {
             if(e.KeyCode == Keys.Enter && tbSalesOrder.Text !="")
             {
-                btnSalesOrder_Click(this, MouseEventArgs.Empty);
+                btnOdbc_Click(this, MouseEventArgs.Empty);
             }
+        }
+
+        private void btnOdbc_Click(object sender, EventArgs e)
+        {
+            OdbcConnection dbCon = new OdbcConnection("DSN=Fishbowl");
+            OdbcCommand dbComnd = new OdbcCommand();
+
+            dataGridView1.Rows.Clear();
+            try
+            {
+                dbCon.Open();
+            }
+            catch
+            {
+                MessageBox.Show("There was a problem opening the Database connection.", "DATABASE CONNECTION",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            dbComnd.Connection = dbCon;
+            dbComnd.CommandText = FishConVars.SOQuery + tbSalesOrder.Text +"'";
+            OdbcDataReader dbReader = dbComnd.ExecuteReader();
+
+            int fields = dbReader.FieldCount;
+            while (dbReader.Read())
+            {
+                string sTolog = "";
+                string sLabel = "";
+
+                sTolog += dbReader.GetString(1) + ",";
+                sTolog += dbReader.GetInt32(2) + ",";
+                if (!dbReader.IsDBNull(3))
+                {
+                    sTolog += dbReader.GetString(3) + ",";
+                    sLabel = dbReader.GetString(3);
+                }
+                else
+                {
+                    sTolog += ",";
+                }
+
+                dataGridView1.Rows.Add(false, dbReader.GetString(1), dbReader.GetInt32(2), sLabel);
+
+                FishConVars.sLog += sTolog + "\r\n";
+
+                lblCustomer.Text = dbReader.GetString(4);
+            }
+
+            dbReader.Close();
+            dbComnd.Dispose();
+            dbCon.Close();
+
         }
     }
 }
